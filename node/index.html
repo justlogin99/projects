@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faune Sauvage — Protégeons la Biodiversité</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display pour une typographie élégante et éditoriale -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <!-- Configuration personnalisée de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        forest: {
+                            50: '#f3f7f4',
+                            100: '#e2ece5',
+                            200: '#c6dacd',
+                            300: '#9ec0ab',
+                            400: '#719f84',
+                            500: '#4f8266',
+                            600: '#3c6750',
+                            700: '#315341',
+                            800: '#294336',
+                            900: '#1b3626',
+                            950: '#0f2016',
+                        },
+                        earth: {
+                            50: '#faf8f5',
+                            100: '#f3efe8',
+                            200: '#e6ddd0',
+                            300: '#d5c4ae',
+                            400: '#c1a586',
+                            500: '#b18b66',
+                            600: '#a37857',
+                            700: '#886148',
+                            800: '#70503e',
+                            900: '#5b4234',
+                        },
+                        amberwarm: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-earth-50 text-stone-800 antialiased selection:bg-forest-700 selection:text-white">
+
+    <!-- ==================== 1. NAVIGATION ==================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-forest-950/85 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Titre du site -->
+                <a href="#" class="flex items-center space-x-3 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-forest-500 to-forest-700 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                        <!-- Icône SVG Feuille & Empreinte -->
+                        <svg class="w-6 h-6 text-earth-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 9-11 9-11s9 6.03 9 11c0 4.97-4.03 9-9 9z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21V9m0 6l4-3m-4 1l-4-3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white">Faune <span class="text-earth-300">Sauvage</span></span>
+                        <span class="hidden sm:block text-[11px] uppercase tracking-widest text-forest-300">Alliance pour le Vivant</span>
+                    </div>
+                </a>
+
+                <!-- Liens de navigation (Desktop) -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#mission" class="text-sm font-medium text-earth-100 hover:text-earth-300 transition-colors">Notre Mission</a>
+                    <a href="#especes" class="text-sm font-medium text-earth-100 hover:text-earth-300 transition-colors">Espèces Menacées</a>
+                    <a href="#agir" class="text-sm font-medium text-earth-100 hover:text-earth-300 transition-colors">Comment Agir</a>
+                    <a href="#rejoindre" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-amberwarm-500 hover:bg-amberwarm-600 text-white shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        Rejoindre le Mouvement
+                    </a>
+                </nav>
+
+                <!-- Bouton Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Ouvrir le menu" class="md:hidden p-2.5 rounded-xl text-earth-100 hover:bg-white/10 focus:outline-none">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Déroulant -->
+        <div id="mobile-menu" class="hidden md:hidden bg-forest-900 border-t border-white/10 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
+            <a href="#mission" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-earth-100 hover:bg-forest-800">Notre Mission</a>
+            <a href="#especes" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-earth-100 hover:bg-forest-800">Espèces Menacées</a>
+            <a href="#agir" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-earth-100 hover:bg-forest-800">Comment Agir</a>
+            <a href="#rejoindre" class="mobile-link block mt-3 text-center px-4 py-3 rounded-xl text-base font-semibold bg-amberwarm-500 text-white">Rejoindre le Mouvement</a>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-forest-950">
+        <!-- Image de fond haute résolution avec fallback élégant -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=2000&q=80" 
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1b3626/e6ddd0?text=For%C3%AAt+Sauvage';"
+                alt="Forêt brumeuse abritant la faune sauvage" 
+                class="w-full h-full object-cover object-center scale-105 opacity-45"
+            >
+            <!-- Superposition de dégradés naturels -->
+            <div class="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-900/65 to-earth-50"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-forest-950/75 via-transparent to-forest-950/60"></div>
+        </div>
+
+        <!-- Contenu principal du Hero -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 sm:py-24">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-earth-200 text-xs sm:text-sm font-medium mb-8">
+                <span class="w-2 h-2 rounded-full bg-amberwarm-500 animate-pulse"></span>
+                <span>Urgence Biodiversité • Ensemble pour la planète vivante</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-6 drop-shadow-sm">
+                Chaque vie compte : <br class="hidden sm:inline">
+                <span class="text-earth-300 italic font-semibold">Protégeons la faune sauvage</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-xl text-earth-100/90 font-light leading-relaxed mb-10">
+                Des forêts profondes aux océans infinis, chaque espèce tisse l’équilibre fragile de notre Terre. Il est encore temps d’agir pour préserver les merveilles du monde naturel avant qu’elles ne deviennent un simple souvenir.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#agir" class="w-full sm:w-auto px-8 py-4 rounded-full bg-amberwarm-500 hover:bg-amberwarm-600 text-white font-semibold text-base shadow-xl hover:shadow-amberwarm-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span>Agir maintenant</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+                <a href="#especes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-medium text-base transition-all flex items-center justify-center">
+                    Découvrir les espèces menacées
+                </a>
+            </div>
+        </div>
+
+        <!-- Indicateur de défilement -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center text-forest-800">
+            <span class="text-xs uppercase tracking-widest font-semibold mb-2">Explorer</span>
+            <div class="w-6 h-10 rounded-full border-2 border-forest-800/50 flex justify-center p-1">
+                <div class="w-1.5 h-2.5 bg-forest-800 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. NOTRE MISSION ==================== -->
+    <section id="mission" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Texte éditorial -->
+            <div class="lg:col-span-6 space-y-6">
+                <div class="inline-block px-3.5 py-1.5 rounded-full bg-forest-100 text-forest-800 text-xs font-semibold uppercase tracking-wider">
+                    Notre Mission
+                </div>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-950 leading-tight">
+                    Préserver le souffle sauvage de notre planète
+                </h2>
+                <p class="text-stone-600 text-base sm:text-lg leading-relaxed">
+                    La biodiversité n’est pas un luxe esthétique : elle est le socle même de notre survie. Les pollinisateurs nourrissent nos cultures, les grands prédateurs régulent les écosystèmes forestiers et les géants des mers participent à la capture du carbone atmosphérique.
+                </p>
+                <p class="text-stone-600 text-base sm:text-lg leading-relaxed">
+                    Face à la fragmentation des habitats, au braconnage et au dérèglement climatique, <strong class="text-forest-800 font-semibold">Faune Sauvage</strong> mobilise les citoyens, soutient les réserves naturelles et finance la restauration des corridors écologiques à travers le monde.
+                </p>
+
+                <!-- Citation intégrée -->
+                <blockquote class="p-6 rounded-2xl bg-earth-100 border-l-4 border-forest-600 italic text-forest-900 font-serif text-lg">
+                    « Nous n’héritons pas de la Terre de nos parents, nous l’empruntons à nos enfants. »
+                    <footer class="mt-2 text-xs font-sans not-italic uppercase tracking-wider text-earth-700">— Proverbe écologique</footer>
+                </blockquote>
+            </div>
+
+            <!-- Grille de statistiques clés -->
+            <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Carte Statistique 1 -->
+                <div class="p-7 rounded-3xl bg-white border border-earth-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-700 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div class="font-serif text-4xl font-bold text-forest-950 mb-2">44 000+</div>
+                    <h3 class="text-sm font-semibold text-stone-800 mb-1">Espèces menacées d'extinction</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Répertoriées sur la Liste Rouge de l'UICN, soit près de 28 % des espèces évaluées.</p>
+                </div>
+
+                <!-- Carte Statistique 2 -->
+                <div class="p-7 rounded-3xl bg-forest-900 text-white shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-800 text-earth-300 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="font-serif text-4xl font-bold text-earth-300 mb-2">-69 %</div>
+                    <h3 class="text-sm font-semibold text-white mb-1">Déclin des populations sauvages</h3>
+                    <p class="text-sm text-forest-200 leading-relaxed">Chute moyenne observée chez les vertébrés sauvages depuis 1970 selon l'Indice Planète Vivante.</p>
+                </div>
+
+                <!-- Carte Statistique 3 -->
+                <div class="p-7 rounded-3xl bg-white border border-earth-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amberwarm-600 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <div class="font-serif text-4xl font-bold text-forest-950 mb-2">10 M ha</div>
+                    <h3 class="text-sm font-semibold text-stone-800 mb-1">De forêts perdues chaque année</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">La déforestation détruit l'habitat de 80 % de la biodiversité terrestre mondiale.</p>
+                </div>
+
+                <!-- Carte Statistique 4 -->
+                <div class="p-7 rounded-3xl bg-earth-200/70 border border-earth-300 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-700 text-white flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <div class="font-serif text-4xl font-bold text-forest-950 mb-2">100 %</div>
+                    <h3 class="text-sm font-semibold text-stone-800 mb-1">D'espoir par l'action collective</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">Chaque programme de conservation financé permet déjà le retour spectaculaire d'espèces emblématiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. ESPÈCES MENACÉES ==================== -->
+    <section id="especes" class="py-20 sm:py-28 bg-earth-100/80 border-y border-earth-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="inline-block px-3.5 py-1.5 rounded-full bg-forest-200/70 text-forest-900 text-xs font-semibold uppercase tracking-wider mb-4">
+                    Sentinelles de la Nature
+                </span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-950 mb-4">
+                    Espèces Menacées à Protéger
+                </h2>
+                <p class="text-stone-600 text-base sm:text-lg">
+                    Découvrez quatre espèces emblématiques dont le destin dépend de nos choix aujourd'hui. Cliquez sur une fiche pour explorer leur habitat, les menaces qui pèsent sur elles et les solutions déployées.
+                </p>
+            </div>
+
+            <!-- Grille responsive des 4 espèces (injectée dynamiquement ou structurée proprement) -->
+            <div id="species-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Les cartes sont générées par JavaScript pour synchroniser parfaitement les données avec la modale -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. COMMENT AGIR ==================== -->
+    <section id="agir" class="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
+            <div class="max-w-2xl">
+                <span class="inline-block px-3.5 py-1.5 rounded-full bg-amber-100 text-amberwarm-600 text-xs font-semibold uppercase tracking-wider mb-4">
+                    Gestes Quotidiens
+                </span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-950 mb-4">
+                    Comment Agir à Votre Échelle ?
+                </h2>
+                <p class="text-stone-600 text-base sm:text-lg">
+                    La protection de la faune sauvage commence dans nos choix de consommation, nos voyages et notre engagement citoyen. Cochez les actions que vous vous engagez à adopter :
+                </p>
+            </div>
+
+            <!-- Compteur interactif d'engagements sélectionnés -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-forest-900 text-white flex items-center gap-4 shadow-md self-start lg:self-end">
+                <div class="w-12 h-12 rounded-xl bg-amberwarm-500 flex items-center justify-center font-serif text-2xl font-bold" id="action-counter">
+                    0
+                </div>
+                <div>
+                    <div class="text-sm font-semibold text-white">Actions sélectionnées</div>
+                    <div class="text-xs text-forest-200" id="action-status-text">Cliquez sur les cartes pour vous engager</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grille de 6 actions concrètes avec sélection interactive -->
+        <div id="actions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Action 1 -->
+            <div class="action-card cursor-pointer group p-6 rounded-3xl bg-white border-2 border-earth-200 hover:border-forest-500 transition-all shadow-sm hover:shadow-md select-none" data-action="Refuser les produits issus du trafic illégal">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-100 text-forest-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                        </svg>
+                    </div>
+                    <span class="checkbox-indicator w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-forest-950 mb-2">Combattre le trafic illégal</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Ne jamais acheter de souvenirs fabriqués à partir d’ivoire, d’écailles de tortue, de corail ou d’animaux exotiques capturés dans la nature.
+                </p>
+            </div>
+
+            <!-- Action 2 -->
+            <div class="action-card cursor-pointer group p-6 rounded-3xl bg-white border-2 border-earth-200 hover:border-forest-500 transition-all shadow-sm hover:shadow-md select-none" data-action="Privilégier les produits durables et sans déforestation">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-100 text-forest-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <span class="checkbox-indicator w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-forest-950 mb-2">Consommer sans déforestation</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Choisir du bois certifié FSC, éviter l’huile de palme non durable et réduire sa consommation de viande pour limiter l’expansion agricole sur les forêts.
+                </p>
+            </div>
+
+            <!-- Action 3 -->
+            <div class="action-card cursor-pointer group p-6 rounded-3xl bg-white border-2 border-earth-200 hover:border-forest-500 transition-all shadow-sm hover:shadow-md select-none" data-action="Réduire drastiquement les plastiques à usage unique">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-100 text-forest-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                    </div>
+                    <span class="checkbox-indicator w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-forest-950 mb-2">Bannir le plastique jetable</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Chaque année, des millions de tortues, oiseaux et mammifères marins périssent en ingérant des déchets plastiques. Adoptez gourdes et sacs réutilisables.
+                </p>
+            </div>
+
+            <!-- Action 4 -->
+            <div class="action-card cursor-pointer group p-6 rounded-3xl bg-white border-2 border-earth-200 hover:border-forest-500 transition-all shadow-sm hover:shadow-md select-none" data-action="Pratiquer un écotourisme respectueux">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-100 text-forest-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <span class="checkbox-indicator w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-forest-950 mb-2">Voyager de façon responsable</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Privilégiez l’observation respectueuse dans des réserves certifiées et refusez toute attraction impliquant des animaux captifs ou dressés.
+                </p>
+            </div>
+
+            <!-- Action 5 -->
+            <div class="action-card cursor-pointer group p-6 rounded-3xl bg-white border-2 border-earth-200 hover:border-forest-500 transition-all shadow-sm hover:shadow-md select-none" data-action="Créer un refuge pour la biodiversité locale">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-100 text-forest-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <span class="checkbox-indicator w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-forest-950 mb-2">Accueillir la faune locale</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Plantez des fleurs mellifères sur votre balcon ou jardin, installez des nichoirs et bannissez les pesticides chimiques pour protéger oiseaux et insectes.
+                </p>
+            </div>
+
+            <!-- Action 6 -->
+            <div class="action-card cursor-pointer group p-6 rounded-3xl bg-white border-2 border-earth-200 hover:border-forest-500 transition-all shadow-sm hover:shadow-md select-none" data-action="Soutenir et relayer les associations de terrain">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-forest-100 text-forest-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <span class="checkbox-indicator w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-forest-950 mb-2">Soutenir les gardiens du vivant</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Appuyez les gardes forestiers, les centres de soins de la faune sauvage et sensibilisez votre entourage à l’urgence de la conservation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. REJOINDRE LE MOUVEMENT (CHARTE & FORMULAIRE) ==================== -->
+    <section id="rejoindre" class="py-20 sm:py-28 bg-forest-950 text-white relative overflow-hidden">
+        <!-- Motifs décoratifs organiques en arrière-plan -->
+        <div class="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 rounded-full bg-forest-800/30 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-24 -mb-24 w-96 h-96 rounded-full bg-amberwarm-600/20 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Présentation de la Charte -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-forest-800 text-earth-300 text-xs font-semibold uppercase tracking-wider">
+                        Engagement Citoyen
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        Signez la Charte de Protection de la Faune Sauvage
+                    </h2>
+                    <p class="text-forest-200 text-base sm:text-lg leading-relaxed">
+                        En apposant votre signature, vous rejoignez une communauté internationale de citoyens déterminés à défendre le droit des espèces sauvages à vivre libres et protégées.
+                    </p>
+
+                    <!-- Résumé de la charte -->
+                    <div class="p-6 rounded-2xl bg-forest-900/90 border border-forest-700/70 space-y-3 text-sm text-earth-100">
+                        <div class="font-serif text-base font-semibold text-earth-300">Ce que j'affirme par ma signature :</div>
+                        <ul class="space-y-2.5">
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-amberwarm-500 font-bold">✓</span>
+                                <span>Respecter les habitats naturels et limiter mon empreinte écologique quotidienne.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-amberwarm-500 font-bold">✓</span>
+                                <span>Refuser toute forme d'exploitation ou de commerce d'espèces menacées.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-amberwarm-500 font-bold">✓</span>
+                                <span>Soutenir la création et le maintien d'aires naturelles protégées.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Compteur dynamique de signataires -->
+                    <div class="flex items-center gap-4 pt-2">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-forest-600 border-2 border-forest-950 flex items-center justify-center text-xs font-bold">CL</div>
+                            <div class="w-10 h-10 rounded-full bg-earth-600 border-2 border-forest-950 flex items-center justify-center text-xs font-bold">AM</div>
+                            <div class="w-10 h-10 rounded-full bg-amberwarm-600 border-2 border-forest-950 flex items-center justify-center text-xs font-bold">SD</div>
+                            <div class="w-10 h-10 rounded-full bg-forest-700 border-2 border-forest-950 flex items-center justify-center text-xs font-bold">+</div>
+                        </div>
+                        <div>
+                            <div class="text-xl sm:text-2xl font-serif font-bold text-earth-300">
+                                <span id="signature-count">14 872</span> signataires
+                            </div>
+                            <div class="text-xs text-forest-300">ont déjà rejoint le mouvement</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire interactif -->
+                <div class="lg:col-span-6">
+                    <div class="p-8 sm:p-10 rounded-3xl bg-white text-stone-800 shadow-2xl">
+                        <!-- Formulaire -->
+                        <form id="pledge-form" class="space-y-5" novalidate>
+                            <h3 class="font-serif text-2xl font-bold text-forest-950">Votre Engagement</h3>
+                            <p class="text-sm text-stone-500">Complétez ce formulaire pour enregistrer officiellement votre soutien.</p>
+
+                            <div>
+                                <label for="signer-name" class="block text-sm font-medium text-stone-700 mb-1.5">Nom complet *</label>
+                                <input 
+                                    type="text" 
+                                    id="signer-name" 
+                                    name="name" 
+                                    required 
+                                    placeholder="Ex. Camille Laurent"
+                                    class="w-full px-4 py-3.5 rounded-xl bg-earth-50 border border-earth-300 text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-forest-600 focus:border-transparent transition"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="signer-email" class="block text-sm font-medium text-stone-700 mb-1.5">Adresse e-mail *</label>
+                                <input 
+                                    type="email" 
+                                    id="signer-email" 
+                                    name="email" 
+                                    required 
+                                    placeholder="camille.laurent@exemple.fr"
+                                    class="w-full px-4 py-3.5 rounded-xl bg-earth-50 border border-earth-300 text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-forest-600 focus:border-transparent transition"
+                                >
+                            </div>
+
+                            <!-- Affichage dynamique des actions cochées dans la section précédente -->
+                            <div id="selected-actions-summary" class="hidden p-4 rounded-xl bg-forest-50 border border-forest-200 text-xs text-forest-900">
+                                <span class="font-semibold block mb-1">Vos engagements sélectionnés :</span>
+                                <span id="selected-actions-list" class="text-forest-700"></span>
+                            </div>
+
+                            <div class="flex items-start gap-3 pt-1">
+                                <input 
+                                    type="checkbox" 
+                                    id="charte-agree" 
+                                    required
+                                    class="mt-1 w-4 h-4 rounded text-forest-700 focus:ring-forest-600 border-stone-300 cursor-pointer"
+                                >
+                                <label for="charte-agree" class="text-xs sm:text-sm text-stone-600 cursor-pointer leading-relaxed">
+                                    J'adhère pleinement aux principes de la <strong>Charte de protection de la faune sauvage</strong> et j'accepte de recevoir des nouvelles des actions de préservation.
+                                </label>
+                            </div>
+
+                            <!-- Message d'erreur inline (remplace alert) -->
+                            <div id="form-error" class="hidden p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+                                Veuillez renseigner votre nom, une adresse e-mail valide et accepter la charte.
+                            </div>
+
+                            <button 
+                                type="submit" 
+                                class="w-full py-4 px-6 rounded-xl bg-forest-800 hover:bg-forest-900 text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                            >
+                                <span>Signer la Charte maintenant</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <!-- Message de confirmation après soumission -->
+                        <div id="pledge-success" class="hidden text-center py-6 space-y-5">
+                            <div class="w-16 h-16 rounded-full bg-forest-100 text-forest-700 flex items-center justify-center mx-auto">
+                                <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest-950">
+                                Merci pour votre engagement, <span id="confirmed-name" class="text-forest-700"></span> !
+                            </h3>
+                            <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                                Votre signature a bien été enregistrée. Vous faites désormais partie des <strong id="confirmed-total" class="text-forest-900">14 873</strong> protecteurs de la faune sauvage. Ensemble, faisons entendre la voix du vivant.
+                            </p>
+                            <div class="pt-2">
+                                <button id="reset-form-btn" type="button" class="text-sm font-medium text-forest-700 hover:text-forest-900 underline">
+                                    Enregistrer une autre signature
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. FOOTER ==================== -->
+    <footer class="bg-forest-950 border-t border-white/10 text-forest-200 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                <!-- Colonne Identité & Citation -->
+                <div class="md:col-span-6 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-forest-700 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-earth-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 9-11 9-11s9 6.03 9 11c0 4.97-4.03 9-9 9z"/>
+                            </svg>
+                        </div>
+                        <span class="font-serif text-xl font-bold text-white">Faune <span class="text-earth-300">Sauvage</span></span>
+                    </div>
+                    <p class="font-serif italic text-earth-200 text-base sm:text-lg max-w-md leading-relaxed">
+                        « La grandeur d'une nation et ses progrès moraux peuvent être jugés par la manière dont elle traite ses animaux. »
+                    </p>
+                    <p class="text-xs uppercase tracking-widest text-forest-400">— Mahatma Gandhi</p>
+                </div>
+
+                <!-- Navigation rapide -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Navigation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#mission" class="hover:text-earth-300 transition-colors">Notre Mission</a></li>
+                        <li><a href="#especes" class="hover:text-earth-300 transition-colors">Espèces Menacées</a></li>
+                        <li><a href="#agir" class="hover:text-earth-300 transition-colors">Comment Agir</a></li>
+                        <li><a href="#rejoindre" class="hover:text-earth-300 transition-colors">Signer la Charte</a></li>
+                    </ul>
+                </div>
+
+                <!-- Ressources & Sensibilisation -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Sensibilisation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#especes" class="hover:text-earth-300 transition-colors">Liste Rouge UICN</a></li>
+                        <li><a href="#agir" class="hover:text-earth-300 transition-colors">Guide de l'Écotourisme</a></li>
+                        <li><a href="#mission" class="hover:text-earth-300 transition-colors">Corridors Écologiques</a></li>
+                        <li><a href="#rejoindre" class="hover:text-earth-300 transition-colors">Devenir Bénévole</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-forest-400">
+                <p>&copy; 2026 Faune Sauvage — Initiative citoyenne pour la protection de la biodiversité. Tous droits réservés.</p>
+                <p>Conçu avec respect pour la nature et le vivant.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALE DÉTAILS DES ESPÈCES ==================== -->
+    <div id="species-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-forest-950/80 backdrop-blur-sm transition-opacity" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col animate-fadeIn">
+            <!-- Bouton Fermer -->
+            <button id="close-modal-btn" aria-label="Fermer la fenêtre" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <!-- Image de l'espèce -->
+            <div class="relative h-60 sm:h-72 bg-forest-900 shrink-0">
+                <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-5 left-6 right-6 flex flex-wrap items-end justify-between gap-2">
+                    <div>
+                        <span id="modal-latin" class="block text-xs italic text-earth-200 mb-1"></span>
+                        <h3 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-white"></h3>
+                    </div>
+                    <span id="modal-status-badge" class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></span>
+                </div>
+            </div>
+
+            <!-- Contenu détaillé défilable -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-stone-700">
+                <div class="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-earth-50 border border-earth-200 text-sm">
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider text-stone-400 font-semibold">Habitat naturel</span>
+                        <span id="modal-habitat" class="font-medium text-forest-950"></span>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider text-stone-400 font-semibold">Population estimée</span>
+                        <span id="modal-population" class="font-medium text-forest-950"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-forest-950 mb-2">Présentation & Rôle Écologique</h4>
+                    <p id="modal-description" class="text-sm sm:text-base leading-relaxed text-stone-600"></p>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-forest-950 mb-2">Principales Menaces</h4>
+                    <p id="modal-threats" class="text-sm sm:text-base leading-relaxed text-stone-600"></p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-forest-50 border border-forest-200">
+                    <h4 class="font-serif text-base font-bold text-forest-900 mb-1">Comment nous agissons</h4>
+                    <p id="modal-conservation" class="text-sm leading-relaxed text-forest-800"></p>
+                </div>
+
+                <div class="pt-2 flex justify-end">
+                    <a href="#rejoindre" id="modal-cta-btn" class="px-6 py-3 rounded-full bg-amberwarm-500 hover:bg-amberwarm-600 text-white text-sm font-semibold transition-colors">
+                        Signer la charte pour la protéger
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SCRIPTS INTERACTIFS ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Données complètes des espèces menacées
+            const speciesData = [
+                {
+                    id: 'tigre',
+                    name: 'Le Tigre du Bengale',
+                    latin: 'Panthera tigris tigris',
+                    status: 'En danger',
+                    statusColor: 'bg-red-600 text-white',
+                    badgeLight: 'bg-red-100 text-red-800 border-red-200',
+                    image: 'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=900&q=80',
+                    fallback: 'https://placehold.co/800x600/315341/ffffff?text=Tigre+du+Bengale',
+                    shortDesc: 'Seigneur discret des mangroves et forêts tropicales d’Asie, indispensable à l’équilibre des écosystèmes.',
+                    habitat: 'Forêts tropicales et mangroves (Inde, Népal, Bangladesh)',
+                    population: 'Environ 3 500 individus à l’état sauvage',
+                    description: 'Plus grand félin d’Asie, le Tigre du Bengale joue un rôle clé de superprédateur : en régulant les populations d’herbivores, il préserve la régénération naturelle des forêts et des sols.',
+                    threats: 'La fragmentation de son territoire due à l’urbanisation, les conflits avec les communautés locales et le braconnage alimenté par le trafic illégal menacent directement sa survie.',
+                    conservation: 'Création de corridors écologiques reliant les réserves protégées, patrouilles anti-braconnage équipées et indemnisation des éleveurs locaux.'
+                },
+                {
+                    id: 'elephant',
+                    name: "L'Éléphant d'Afrique",
+                    latin: 'Loxodonta africana',
+                    status: 'En danger',
+                    statusColor: 'bg-red-600 text-white',
+                    badgeLight: 'bg-red-100 text-red-800 border-red-200',
+                    image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=900&q=80',
+                    fallback: 'https://placehold.co/800x600/5b4234/ffffff?text=%C3%89l%C3%A9phant+d%27Afrique',
+                    shortDesc: 'Véritable architecte des savanes et forêts africaines, doté d’une mémoire et d’une intelligence remarquables.',
+                    habitat: 'Savanes, forêts claires et zones humides d’Afrique subsaharienne',
+                    population: 'Environ 415 000 individus (en déclin rapide)',
+                    description: 'En dispersant les graines sur des dizaines de kilomètres et en creusant des points d’eau en saison sèche, l’éléphant façonne le paysage et permet à des centaines d’autres espèces de survivre.',
+                    threats: 'Le braconnage pour l’ivoire reste un fléau majeur, aggravé par la réduction des couloirs de migration face à l’expansion des terres agricoles.',
+                    conservation: 'Surveillance par satellite des troupeaux, lutte internationale contre le commerce de l’ivoire et développement de l’écotourisme solidaire.'
+                },
+                {
+                    id: 'panda',
+                    name: 'Le Panda Géant',
+                    latin: 'Ailuropoda melanoleuca',
+                    status: 'Vulnérable',
+                    statusColor: 'bg-amber-500 text-white',
+                    badgeLight: 'bg-amber-100 text-amber-900 border-amber-200',
+                    image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=900&q=80',
+                    fallback: 'https://placehold.co/800x600/3c6750/ffffff?text=Panda+G%C3%A9ant',
+                    shortDesc: 'Symbole mondial de la conservation, habitant paisible des forêts de bambous montagneuses.',
+                    habitat: 'Forêts tempérées de bambous du sud-ouest de la Chine',
+                    population: 'Environ 1 860 individus dans la nature',
+                    description: 'Bien que son statut soit passé de « En danger » à « Vulnérable » grâce aux efforts de protection, le Panda géant demeure totalement dépendant des forêts de bambous d’altitude.',
+                    threats: 'L’isolement des populations dans des parcelles forestières fragmentées et le réchauffement climatique qui menace la croissance des bambous.',
+                    conservation: 'Reforestation massive de bambouseraies, création du Parc National du Panda Géant et programmes de suivi génétique.'
+                },
+                {
+                    id: 'tortue',
+                    name: 'La Tortue Luth',
+                    latin: 'Dermochelys coriacea',
+                    status: 'Vulnérable',
+                    statusColor: 'bg-amber-500 text-white',
+                    badgeLight: 'bg-amber-100 text-amber-900 border-amber-200',
+                    image: 'https://images.unsplash.com/photo-1518467166778-b88f373ffec7?auto=format&fit=crop&w=900&q=80',
+                    fallback: 'https://placehold.co/800x600/294336/ffffff?text=Tortue+Luth',
+                    shortDesc: 'Plus grande tortue marine au monde, grande voyageuse des océans menacée par la pollution plastique.',
+                    habitat: 'Océans tropicaux, subtropicaux et tempérés du globe',
+                    population: 'Moins de 35 000 femelles nicheuses estimées',
+                    description: 'Dépourvue de carapace osseuse rigide, la Tortue luth parcourt des milliers de kilomètres et régule les populations de méduses dans les écosystèmes marins.',
+                    threats: 'Les prises accidentelles dans les filets de pêche industrielle, l’ingestion de sacs plastiques confondus avec des méduses et l’artificialisation des plages de ponte.',
+                    conservation: 'Protection nocturne des plages de ponte, dispositifs d’exclusion sur les filets de pêche et campagnes de réduction des déchets marins.'
+                }
+            ];
+
+            // 2. Injection des cartes d'espèces dans la grille
+            const speciesGrid = document.getElementById('species-grid');
+            speciesData.forEach((species) => {
+                const card = document.createElement('article');
+                card.className = 'group bg-white rounded-3xl overflow-hidden border border-earth-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col transform hover:-translate-y-1';
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden bg-forest-900">
+                        <img 
+                            src="${species.image}" 
+                            onerror="this.onerror=null; this.src='${species.fallback}';"
+                            alt="${species.name}" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        >
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold border ${species.badgeLight} shadow-sm">
+                                ${species.status}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs italic text-stone-400 block mb-1">${species.latin}</span>
+                            <h3 class="font-serif text-xl font-bold text-forest-950 mb-2 group-hover:text-forest-700 transition-colors">
+                                ${species.name}
+                            </h3>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-5">
+                                ${species.shortDesc}
+                            </p>
+                        </div>
+                        <button 
+                            type="button" 
+                            data-species-id="${species.id}"
+                            class="open-modal-btn w-full py-3 px-4 rounded-xl bg-forest-50 hover:bg-forest-800 text-forest-900 hover:text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2 border border-forest-200 hover:border-forest-800"
+                        >
+                            <span>En savoir plus</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                speciesGrid.appendChild(card);
+            });
+
+            // 3. Gestion de la modale des espèces
+            const modal = document.getElementById('species-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalCtaBtn = document.getElementById('modal-cta-btn');
+
+            function openSpeciesModal(speciesId) {
+                const species = speciesData.find(s => s.id === speciesId);
+                if (!species) return;
+
+                const modalImg = document.getElementById('modal-image');
+                modalImg.src = species.image;
+                modalImg.alt = species.name;
+                modalImg.onerror = function() { this.onerror = null; this.src = species.fallback; };
+
+                document.getElementById('modal-latin').textContent = species.latin;
+                document.getElementById('modal-title').textContent = species.name;
+                
+                const badge = document.getElementById('modal-status-badge');
+                badge.textContent = species.status;
+                badge.className = `px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${species.statusColor}`;
+
+                document.getElementById('modal-habitat').textContent = species.habitat;
+                document.getElementById('modal-population').textContent = species.population;
+                document.getElementById('modal-description').textContent = species.description;
+                document.getElementById('modal-threats').textContent = species.threats;
+                document.getElementById('modal-conservation').textContent = species.conservation;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSpeciesModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.open-modal-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openSpeciesModal(btn.getAttribute('data-species-id'));
+                });
+            });
+
+            closeModalBtn.addEventListener('click', closeSpeciesModal);
+            modalCtaBtn.addEventListener('click', closeSpeciesModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeSpeciesModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeSpeciesModal();
+                }
+            });
+
+            // 4. Menu mobile responsive
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden', !isHidden);
+                iconClose.classList.toggle('hidden', isHidden);
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                });
+            });
+
+            // 5. Interaction des cartes "Comment Agir" (cochage d'engagements)
+            const actionCards = document.querySelectorAll('.action-card');
+            const actionCounterEl = document.getElementById('action-counter');
+            const actionStatusEl = document.getElementById('action-status-text');
+            const selectedActionsSummary = document.getElementById('selected-actions-summary');
+            const selectedActionsList = document.getElementById('selected-actions-list');
+            const selectedActions = new Set();
+
+            actionCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const actionLabel = card.getAttribute('data-action');
+                    const indicator = card.querySelector('.checkbox-indicator');
+                    const checkIcon = indicator.querySelector('svg');
+
+                    if (selectedActions.has(actionLabel)) {
+                        selectedActions.delete(actionLabel);
+                        card.classList.remove('border-forest-600', 'bg-forest-50/60');
+                        card.classList.add('border-earth-200', 'bg-white');
+                        indicator.classList.remove('bg-forest-700', 'border-forest-700');
+                        indicator.classList.add('border-stone-300');
+                        checkIcon.classList.add('hidden');
+                    } else {
+                        selectedActions.add(actionLabel);
+                        card.classList.remove('border-earth-200', 'bg-white');
+                        card.classList.add('border-forest-600', 'bg-forest-50/60');
+                        indicator.classList.remove('border-stone-300');
+                        indicator.classList.add('bg-forest-700', 'border-forest-700');
+                        checkIcon.classList.remove('hidden');
+                    }
+
+                    // Mise à jour du compteur et du résumé dans le formulaire
+                    const count = selectedActions.size;
+                    actionCounterEl.textContent = count;
+
+                    if (count === 0) {
+                        actionStatusEl.textContent = 'Cliquez sur les cartes pour vous engager';
+                        selectedActionsSummary.classList.add('hidden');
+                    } else {
+                        actionStatusEl.textContent = count === 1 
+                            ? '1 engagement pris pour la planète' 
+                            : `${count} engagements pris pour la planète`;
+                        selectedActionsSummary.classList.remove('hidden');
+                        selectedActionsList.textContent = Array.from(selectedActions).join(' • ');
+                    }
+                });
+            });
+
+            // 6. Gestion du formulaire de signature de la Charte
+            const pledgeForm = document.getElementById('pledge-form');
+            const pledgeSuccess = document.getElementById('pledge-success');
+            const formError = document.getElementById('form-error');
+            const signatureCountEl = document.getElementById('signature-count');
+            const resetFormBtn = document.getElementById('reset-form-btn');
+
+            let totalSignatures = 14872;
+
+            function formatFrenchNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            }
+
+            pledgeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('signer-name').value.trim();
+                const emailInput = document.getElementById('signer-email').value.trim();
+                const agreed = document.getElementById('charte-agree').checked;
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!nameInput || !emailRegex.test(emailInput) || !agreed) {
+                    formError.classList.remove('hidden');
+                    return;
+                }
+
+                formError.classList.add('hidden');
+                totalSignatures += 1;
+
+                const formattedTotal = formatFrenchNumber(totalSignatures);
+                signatureCountEl.textContent = formattedTotal;
+                document.getElementById('confirmed-name').textContent = nameInput;
+                document.getElementById('confirmed-total').textContent = formattedTotal;
+
+                pledgeForm.classList.add('hidden');
+                pledgeSuccess.classList.remove('hidden');
+            });
+
+            resetFormBtn.addEventListener('click', () => {
+                pledgeForm.reset();
+                pledgeSuccess.classList.add('hidden');
+                pledgeForm.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
